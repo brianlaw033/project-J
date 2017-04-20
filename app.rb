@@ -52,7 +52,7 @@ post("/signup") do
   dob = params.fetch('dob')
   new_user = User.create({:username => username, :name => name, :gender => gender, :image_url => image_url, :dob => dob})
   session[:user_id] = new_user.id
-  session[:username] = user.username
+  session[:username] = new_user.username
   redirect("/home")
 end
 
