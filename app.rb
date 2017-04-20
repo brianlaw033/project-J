@@ -79,6 +79,11 @@ patch("/reject/:id") do
   redirect("/home")
 end
 
+get('/event') do
+  @user = User.find(session[:user_id])
+  erb(:event_form)
+end
+
 post("/event") do
   user_id = params.fetch('user_id')
   name = params.fetch("name")
