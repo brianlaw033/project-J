@@ -1,0 +1,28 @@
+<h3>You are searching for "<%=@keyword%>"</h3>
+<div class="col-md-6">
+<h2>User results </h2>
+<% if @possible_users.any?()%>
+  <%@possible_users.each do|user|%>
+    <li>
+      <img class="css-profile" src="<%= user.image_url%>">
+      <a href='/user/<%=user.id%>'><%=user.name%></a>
+    </li>
+  <%end%>
+<%else%>
+  None
+<%end%>
+</div>
+
+<div class="col-md-6">
+<h2>Event results </h2>
+<% if @event_results.any?%>
+  <%@event_results.each do|event|%>
+    <li>
+      <a href='/event/<%=event.first.id%>'><%=event.first.name%></a>
+    </li>
+  <%end%>
+<%else%>
+  None
+<%end%>
+
+</div>

@@ -1,0 +1,142 @@
+<h1><%= @event.name%><small> Hosted by <%=@event.user.name%> </small> </h1>
+
+<form action="/join" method="post">
+  <input type="hidden" value="<%= @event.id %>" name="event_id">
+  <button class="btn btn-danger" type="submit">Join</button>
+</form>
+
+  <div class="row" style="height:400px ;border: 1px solid grey">
+    <div class="col-md-6">
+      <img class="css-eventimg" src="<%= @event.image_url%>">
+    </div>
+    <div class="col-md-6" style="margin-top:40px">
+      <h4>Name: <%=@event.name%></h4>
+      <h4>Date: <%=@date%></h4>
+      <h4>Location: <%=@event.location%></h4>
+      <h4>Capacity: <%=@event.capacity%></h4>
+    </div>
+
+    <%if @event.video_url == "" %>
+    <%else%>
+    <iframe style="margin-top: 30px; margin-bottom: 30px; width: 300px; border: 1px solid grey" src="<%= @event.video_url%>" frameborder="0" allowfullscreen aria="blank"></iframe>
+    <%end%>
+
+  </div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h2>Friends going:</h2>
+    <% @accepted.each() do |event_user| %>
+    <li><%= event_user.attendee.name%></li>
+    <%end%>
+  </div>
+  <div class="col-md-4">
+    <h2>Pending Acceptance:</h2>
+    <% @pending.each() do |event_user| %>
+    <li><%= event_user.attendee.name%></li>
+    <%end%>
+  </div>
+  <div class="col-md-4">
+    <h2>Declined:</h2>
+    <% @declined.each() do |event_user| %>
+    <li><%= event_user.attendee.name%></li>
+    <%end%>
+  </div>
+</div>
+
+
+<h2>Add friends to this event:</h2>
+
+<form class="form-horizontal" action="/event_user/<%=@event.id%>" method="post">
+
+    <% if @friends.any?() %>
+        <select name="friend_id">
+            <% @friends.each() do |friend| %>
+            <option value=<%=friend.id%>><%=friend.name%></option>
+            <% end %>
+        </select>
+        <button class="btn btn-info" type="submit" class="btn">Submit</button>
+    <% else %>
+        <h3>You have no friends yet!</h3>
+    <% end %>
+
+</form>
+
+<hr>
+
+<div class="update_event">
+  <form class="form-horizontal" id="update_event_id" action="/event/<%= @event.id()%>" method="post">
+    <input name="_method" value="patch" type="hidden">
+    <div class="form-group">
+      <label class="col-sm-1" for="name">Name:</label>
+      <input class="col-sm-4" type="text" name="name" value="" placeholder="<%= @event.name()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="date">Date:</label>
+      <input class="col-sm-4" type="timestamp" name="date" value="" placeholder="<%= @event.date()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="location">Location:</label>
+      <input class="col-sm-4" type="text" name="location" value="" placeholder="<%= @event.location()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="capacity">Capacity:</label>
+      <input class="col-sm-4" type="number" name="capacity" value="" placeholder="<%= @event.capacity()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="description">Description:</label>
+      <input class="col-sm-4" type="text" name="description" value="" placeholder="<%= @event.description()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="image_url">Image URL:</label>
+      <input class="col-sm-4" type="text" name="image_url" value="" placeholder="<%= @event.image_url()%>">
+    </div>
+    <div class="form-group">
+      <label class="col-sm-1" for="video_url">Video URL:</label>
+      <input class="col-sm-4" type="text" name="video_url" value="" placeholder="<%= @event.video_url()%>">
+    </div>
+    <button class="btn-sm btn-primary" type="submit">Update</button>
+  </form>
+</div>
+
+<div class="delete_event">
+  <form action="/event/<%= @event.id() %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button class="btn-sm btn-danger" type="submit">Delete </button>
+  </form>
+</div>
+
+<div class='add_category'>
+  <form action='/add_categories/<%=@event.id%>' method='post'>
+    <input name="_method" type="hidden" value="patch">
+    <% @categories.each do |category|%>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="category_ids[]" value="<%= category.id() %>"><%= category.name() %>
+        </label>
+      </div>
+    <%end%>
+    <button class='btn-sm btn-success' type="submit">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+  </form>
+</div>
+
+
+
+<h1>Add your own friends to this event:</h1>
+
+<form class="form-horizontal" action="/event_user/<%=@event.id%>" method="post">
+
+    <% if @friends.any?() %>
+        <select name="friend_id">
+            <% @friends.each() do |friend| %>
+            <option value=<%=friend.id%>><%=friend.name%></option>
+            <% end %>
+        </select>
+        <button class="btn btn-info" type="submit" class="btn">Submit</button>
+    <% else %>
+        <h3>You have no friends yet!</h3>
+    <% end %>
+
+</form>

@@ -1,0 +1,10 @@
+<h1>See all users below (according to your search criteria):</h1>
+
+
+<ul>
+  <% @users.each() do |user|%>
+  <div style="width: 80%; height: 150px; border: 1px solid black; margin-bottom: 5px" class="">
+    <a href='/'> <%=user.name%></a>
+  </div>
+  <%end%>
+</ul>
