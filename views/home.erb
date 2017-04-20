@@ -4,7 +4,7 @@
   <% @events.each do |event| %>
     <img class="css-eventimg" src="<%= event.image_url%>">
     <ul>
-      <li>Name: <%= event.name %></li>
+      <li>Name: <a href="/event/<%=event.id%>"><%= event.name %></a></li>
       <li>Location: <%= event.location %></li>
       <li>Description: <%= event.description %></li>
     </ul>
