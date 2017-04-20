@@ -46,17 +46,20 @@ end
 
 # sign up event
 post("/signup") do
-  post("/signup") do
-    username = params.fetch('username')
-    name = params.fetch('name')
-    gender = params.fetch('gender')
-    image_url = params.fetch('image_url')
-    dob = params.fetch('dob')
-    password = params.fetch('password')
-    new_user = User.create({:username => username, :name => name, :gender => gender, :image_url => image_url, :dob => dob, :password => password})
+  username = params.fetch('username')
+  name = params.fetch('name')
+  gender = params.fetch('gender')
+  image_url = params.fetch('image_url')
+  dob = params.fetch('dob')
+  password = params.fetch('password')
+  @user = User.create({:username => username, :name => name, :gender => gender, :image_url => image_url, :dob => dob, :password => password})
+  if @user.valid?
+    @signup_success = true
     session[:user_id] = new_user.id
     session[:username] = new_user.username
     redirect("/home")
+  else
+    erb (:signup_error)
   end
 end
 
