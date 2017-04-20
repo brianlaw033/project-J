@@ -32,6 +32,26 @@ get('/profile') do
   erb(:profile)
 end
 
+get('/profile/edit') do
+  @profile_edit = true
+  @user = User.find(session[:user_id])
+  erb(:profile)
+end
+
+patch ('/profile') do
+  user = User.find(session[:user_id])
+  username = params.fetch('username')
+  name = params.fetch('name')
+  gender = params.fetch('gender')
+  image_url = params.fetch('image_url')
+  dob = params.fetch('dob')
+  user.update({:username => username, :name => name, :gender => gender, :image_url => image_url, :dob => dob})
+  session.clear
+  session[:user_id] = user.id
+  session[:username] = user.username
+  redirect to ('/profile')
+end
+
 post("/user") do
   username = params.fetch('username')
   user = User.find_by username: username
