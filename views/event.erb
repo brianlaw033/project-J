@@ -1,24 +1,16 @@
 
-<h1><%= @event.name%><small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a>  </small> | Categories <small> <% @event.categories.each do |category| %>  <%= category.name %> <% end %></small></h1>
-
+<div class="event-box">
+<h1><%= @event.name%> - <small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a></small></h1>
+<% @event.categories.each do |category| %><p>Event type: <%= category.name %> <% end %></p>
 <% if @going == true %>
   <h4>You Are Going</h4>
 <% else %>
-  <form action="/join" method="post">
-    <input type="hidden" value="<%= @event.id %>" name="event_id">
-    <button class="btn btn-danger" type="submit">Join</button>
-  </form>
+<form action="/join" method="post">
+  <input type="hidden" value="<%= @event.id %>" name="event_id">
+  <button class="btn btn-primary" type="submit"><p>Join</p></button>
+</form>
 <% end %>
-  <div class="row" style="height:400px ;">
-    <div class="col-md-6">
-      <img class="css-eventimg" src="<%= @event.image_url%>">
-    </div>
-    <div class="col-md-6" style="margin-top:40px">
-      <h4>Name: <%=@event.name%></h4>
-      <h4>Date: <%=@date%></h4>
-      <h4>Location: <%=@event.location%></h4>
-      <h4>Capacity: <%=@event.capacity%></h4>
-    </div>
+</div>
 
 <div class="container">
   <div class="event-box">
@@ -48,39 +40,14 @@
     <h2>Pending Acceptance:</h2>
     <% @pending.each() do |event_user| %>
     <a href="/user/<%= event_user.attendee.id%>">
-      <li><p><%= event_user.attendee.name%></p></li>
+      <ul><p><%= event_user.attendee.name%></p></ul>
     </a>
     <%end%>
   </div>
-  <!-- <div class="event-box col-md-7">
-    <h2>Declined:</h2>
-    <% @declined.each() do |event_user| %>
-    <a href="/user/<%= event_user.attendee.id%>">
-      <li><%= event_user.attendee.name%></li>
-    </a>
-    <%end%>
-  </div> -->
+
 </div>
 
 
-
-<!-- <h2>Add friends to this event:</h2>
-
-<form class="form-horizontal" action="/event_user/<%=@event.id%>" method="post">
-
-    <% if @friends.any?() %>
-        <select name="friend_id">
-            <% @friends.each() do |friend| %>
-            <option value=<%=friend.id%>><%=friend.name%></option>
-            <% end %>
-        </select>
-        <button class="btn btn-info" type="submit" class="btn">Submit</button>
-    <% else %>
-        <h3>You have no friends yet!</h3>
-    <% end %>
-
-<<<<<<< HEAD
-</form> -->
 
 <div class="event-box">
 <div class="update_event">
@@ -148,23 +115,6 @@
 
 
 
-
-<!-- <h1>Add your own friends to this event:</h1>
-
-<form class="form-horizontal" action="/event_user/<%=@event.id%>" method="post">
-
-    <% if @friends.any?() %>
-        <select name="friend_id">
-            <% @friends.each() do |friend| %>
-            <option value=<%=friend.id%>><%=friend.name%></option>
-            <% end %>
-        </select>
-        <button class="btn btn-info" type="submit" class="btn">Submit</button>
-    <% else %>
-        <h3>You have no friends yet!</h3>
-    <% end %>
-
-</form> -->
 </form>
 
 
