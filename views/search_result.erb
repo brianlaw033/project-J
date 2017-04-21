@@ -1,28 +1,42 @@
-<h3>You are searching for "<%=@keyword%>"</h3>
+<div class="event-box">
+  <h1>You Are Searching For "<%=@keyword%>"</h1>
+</div>
 <div class="col-md-6">
-<h2>User results </h2>
+  <div class="event-box">
+    <h1>User Results </h1>
+  </div>
 <% if @possible_users.any?()%>
   <%@possible_users.each do|user|%>
-    <li>
-      <img class="css-profile" src="<%= user.image_url%>">
-      <a href='/user/<%=user.id%>'><%=user.name%></a>
-    </li>
+  <div class="event-box">
+      <ul>
+        <img class="css-profile" src="<%= user.image_url%>">
+        <a href='/user/<%=user.id%>'><%=user.name%></a>
+      </ul>
+  </div>
   <%end%>
 <%else%>
-  None
+<div class="event-box">
+<p>  None</p>
+</div>
 <%end%>
 </div>
 
 <div class="col-md-6">
-<h2>Event results </h2>
+<div class="event-box">
+<h1>Event Results </h1>
+</div>
 <% if @event_results.any?%>
   <%@event_results.each do|event|%>
+  <div class="event-box">
     <li>
       <a href='/event/<%=event.first.id%>'><%=event.first.name%></a>
     </li>
+  </div>
   <%end%>
 <%else%>
-  None
+<div class="event-box">
+  <p>None</p>
+</div>
 <%end%>
 
 </div>

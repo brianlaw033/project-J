@@ -73,8 +73,8 @@ post("/signup") do
   @user = User.create({:username => username, :name => name, :gender => gender, :image_url => image_url, :dob => dob, :password => password})
   if @user.valid?
     @signup_success = true
-    session[:user_id] = new_user.id
-    session[:username] = new_user.username
+    session[:user_id] = @user.id
+    session[:username] = @user.username
     redirect("/home")
   else
     erb (:signup_error)

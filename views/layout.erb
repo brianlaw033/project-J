@@ -1,9 +1,9 @@
-<!DOCTYPE html>
     <html>
       <head>
         <title>Project J</title>
         <link rel='stylesheet' href='https://bootswatch.com/flatly/bootstrap.min.css'>
-        <link rel='stylesheet' href=<%=url('/styles.css')%>>
+        <link rel='stylesheet' href='/styles.css'>
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab|Righteous" rel="stylesheet">
       </head>
       <body>
 
@@ -16,30 +16,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/home">Project X</a>
+              <a class="navbar-brand" href="/home"><p>Project J</p></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
               <ul class="nav navbar-nav">
+                <li><a href="#"><p>About</p></a></li>
+                <li><a href="/event"><p>Create Event</p></a></li>
                 <%if session[:user_id] != nil%>
-                  <li style="margin:15px 0 0 10px">
+                  <li>
                       <form action='/search'>
                         <input type='text' name='keyword' placeholder="Search..."/>
-                        <button class='btn-sm btn-primary'type="submit">Search</button>
+                        <button class='btn btn-primary buttonpad'type="submit"><p>Search</p></button>
                       </form>
                   </li>
-                  <li><a href="/event">Create Event</a></li>
                 <%end%>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <%if session[:user_id] == 1%>
-                  <li><a href="/admin">Admin</a></li>
+                  <li><a href="/admin"><p>Admin</p></a></li>
                 <%end%>
-                <li><a href="#">About</a></li>
-                <li><a href="/profile"><%=session[:username]%></a></li>
-                <li style="margin:15px 0 0 10px">
+                <li><a href="/profile"><p><%=session[:username]%></p></a></li>
+                <li>
                   <form action='/logout'>
-                     <button>Logout</button>
+                     <button class='btn btn-primary buttonpad'><p>Logout</p></button>
                   </form>
                 </li>
               </ul>

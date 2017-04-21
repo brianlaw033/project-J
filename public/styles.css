@@ -1,10 +1,42 @@
+body {
+  background-color: #DFDBE5;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.event-box {
+  border-radius: 2px 2px 2px 2px;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border: 2px solid #000000;
+  background-color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+ul {
+  margin: 5px;
+}
+
+h1 {
+  font-family: 'Josefin Slab', serif;
+}
+
+h2, p {
+  font-family: 'Righteous', cursive;
+}
+
+.buttonpad {
+  margin-top: 7px;
+}
+
 .css-profile {
   height:150px;
+  border: 2px solid #000000;
 }
 
 .css-eventimg {
   max-height: 350px;
-  margin-top:25px
+  max-width: 320px;
 }
 
 .friendbar {
