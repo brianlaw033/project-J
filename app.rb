@@ -41,7 +41,6 @@ end
 patch ('/profile') do
   user = User.find(session[:user_id])
   params2 = params.reject{|k,v| v == "" or k == "splat" or k == "captures" or k == "_method"}
-  binding.pry
   user.update(params2)
   session.clear
   session[:user_id] = user.id
