@@ -11,9 +11,16 @@ class Event < ActiveRecord::Base
   belongs_to(:user)
 
   def add_category(category_ids)
-    category_ids.each do |id|
-      category = Category.find(id)
-      CategoryEvent.where(:event => self, :category => category).first_or_create({:event => self, :category => category})
+    arr = category_ids.map{|item| Integer(item)}
+binding.pry
+    self.categories.each do |cat|
+      arr.delete(cat.id)
     end
+
+binding.pry
+    arr.each do |cid|
+      CategoryEvent.create({:category_id => Integer(cid), :event_id => self.id})
+    end
+
   end
 end

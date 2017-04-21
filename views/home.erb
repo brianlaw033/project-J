@@ -2,12 +2,14 @@
 
   <h1>All Events</h1>
   <% @events.each do |event| %>
-    <img class="css-eventimg" src="<%= event.image_url%>">
-    <ul>
-      <li>Name: <%= event.name %></li>
-      <li>Location: <%= event.location %></li>
-      <li>Description: <%= event.description %></li>
-    </ul>
+    <a href="/event/<%= event.id%>">
+      <img class="css-eventimg" src="<%= event.image_url%>">
+      <ul>
+        <li>Name: <%= event.name %></li>
+        <li>Location: <%= event.location %></li>
+        <li>Description: <%= event.description %></li>
+      </ul>
+    </a>
   <% end %>
 
 </div>
@@ -35,6 +37,16 @@
     <% @user.attendee.each() do |attendee|%>
     <a href="/event/<%=attendee.event_id%>"><li><%=attendee.event.name%></li></a>
     <%end%>
+
+    <h1>Events You Are Hosting</h1>
+    <ul>
+      <% @events.each do |event| %>
+        <% if event.user_id == @user.id %>
+          <a href="/event/<%=event.id%>"><li><%= event.name%></li></a>
+        <% end %>
+      <% end %>
+    </ul>
+
 
     <h1>Create Event:</h1>
 

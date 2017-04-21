@@ -124,7 +124,11 @@ get("/event/:id") do
   @declined = EventUser.where(:event => @event, :accepted => false)
   @accepted = EventUser.where(:event => @event, :accepted => true)
   t = @event.date
-  @date = t.strftime("%d-%b-%Y")
+  if @event.date != nil
+    @date = t.strftime("%d-%b-%Y")
+  else
+    @date = @event.date
+  end
   @user = User.find(session[:user_id])
   @friends = @user.find_friends()
   erb(:event)
