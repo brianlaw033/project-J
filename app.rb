@@ -8,14 +8,23 @@ configure do
   enable :sessions
 end
 
-before do
+before() do
   if params[:username] == nil
-   if session[:user_id] === nil && url != "http://localhost:4567/"
-     redirect("/")
+    if session[:user_id] == nil && url != "http://localhost:4567/"
+      redirect ("/")
     end
-    if @user != nil then @user = User.find(session[:user_id])
+
+    if @user != nil then @user = User.find(seesion[:user_id])
     end
   end
+
+end
+
+#404 Error!
+not_found do
+  status 404
+  @randomvid = rand(2)
+  erb :JESUS
 end
 
 @@categories = Category.all
@@ -50,17 +59,44 @@ patch ('/profile') do
   redirect to ('/profile')
 end
 
+# post("/user") do
+#   username = params.fetch('username')
+#   user = User.find_by username: username
+#   if user == nil
+#     flash[:error] = "User does not exist."
+#   else
+#     session[:user_id] = user.id
+#     session[:username] = user.username
+#     redirect("/home")
+#   end
+# end
+
 post("/user") do
-  username = params.fetch('username')
-  user = User.find_by username: username
+  user = User.find_by(:username => params[:username])
   if user == nil
     flash[:error] = "User does not exist."
-  else
-    session[:user_id] = user.id
+  elsif user && user.authenticate(params[:password])
     session[:username] = user.username
-    redirect("/home")
+    session[:user_id] = user.id
+    redirect "/home"
+  else
+    erb (:login_error)
   end
 end
+
+
+
+#   user = params.fetch('username')
+#   user = User.find_by username: username
+#   if user == nil
+#     flash[:error] = "User does not exist."
+#   else
+#     session[:user_id] = user.id
+#     session[:username] = user.username
+#     redirect("/home")
+#   end
+# end
+
 
 # sign up event
 post("/signup") do
