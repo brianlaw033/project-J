@@ -12,10 +12,7 @@ class Event < ActiveRecord::Base
 
   def add_category(category_ids)
     arr = category_ids.map{|item| Integer(item)}
-<<<<<<< HEAD
 
-=======
->>>>>>> de3ef2da169ec96ab8b501aa53c7eb8dab21239e
     self.categories.each do |cat|
       arr.delete(cat.id)
     end
