@@ -6,11 +6,9 @@
   <div class="event-box">
     <h1><a href="/event/<%=event.id%>"><%=event.name %></a></h1>
     <img class="css-eventimg" src="<%= event.image_url%>">
-    <ul>
-      <li><p>Location: <%= event.location %></p></li>
-      <li><p>Time: <%= event.date %></p></li>
-      <li><p>Description: <%= event.description %></p></li>
-    </ul>
+      <ul><p>Location: <%= event.location %></p></ul>
+      <ul><p>Time: <%= event.date %></p></ul>
+      <ul><p>Description: <%= event.description %></p></ul>
   </div>
   <% end %>
 </div>
@@ -36,25 +34,25 @@
       <%end%>
     <%else%>
     <div class="event-box">
-    <p>  None </p>
+    <ul><p>  None </p></ul>
     </div>
     <%end%>
     <div class="event-box">
     <h1> Events You Are Attending:</h1>
     </div>
     <% if @user.attendee.any?() %>
-      <% @user.attendee.each() do |attendee|%>
     <div class="event-box">
-    <a href="/event/<%=attendee.event_id%>"><li><%=attendee.event.name%></li></a>
-    </div>
+      <% @user.attendee.each() do |attendee|%>
+    <a href="/event/<%=attendee.event_id%>"><ul><p><%=attendee.event.name%></p></ul></a>
       <%end%>
+    </div>
 
     <%else%>
     <div class="event-box">
     <p> None </p>
     </div>
     <%end%>
-    <div class="event-box">
+
 
     <div class="event-box">
       <h1>Events You Are Hosting</h1>
@@ -66,7 +64,7 @@
         <% end %>
       </ul>
     </div>
-
+    <div class="event-box">
     <h1>Create Event:</h1>
 
     <form class="form-horizontal" action="/event" method="post">
