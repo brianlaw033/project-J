@@ -20,6 +20,13 @@ before() do
 
 end
 
+#404 Error!
+not_found do
+  status 404
+  @randomvid = rand(2)
+  erb :JESUS
+end
+
 get("/") do
   erb(:index)
 end
