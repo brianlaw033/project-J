@@ -12,12 +12,10 @@ class Event < ActiveRecord::Base
 
   def add_category(category_ids)
     arr = category_ids.map{|item| Integer(item)}
-binding.pry
     self.categories.each do |cat|
       arr.delete(cat.id)
     end
 
-binding.pry
     arr.each do |cid|
       CategoryEvent.create({:category_id => Integer(cid), :event_id => self.id})
     end

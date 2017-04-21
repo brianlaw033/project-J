@@ -1,6 +1,6 @@
 <div class="event-box">
-<h1><%= @event.name%> - <small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a></small>
-<% @event.categories.each do |category| %>  <%= category.name %> <% end %> </h1>
+<h1><%= @event.name%> - <small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a></small></h1>
+<% @event.categories.each do |category| %><p>Event type: <%= category.name %> <% end %></p>
 <form action="/join" method="post">
   <input type="hidden" value="<%= @event.id %>" name="event_id">
   <button class="btn btn-primary" type="submit"><p>Join</p></button>
@@ -35,7 +35,7 @@
     <h2>Pending Acceptance:</h2>
     <% @pending.each() do |event_user| %>
     <a href="/user/<%= event_user.attendee.id%>">
-      <li><p><%= event_user.attendee.name%></p></li>
+      <ul><p><%= event_user.attendee.name%></p></ul>
     </a>
     <%end%>
   </div>
