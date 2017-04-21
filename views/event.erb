@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 <div class="event-box">
 <h1><%= @event.name%> - <small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a></small></h1>
 <% @event.categories.each do |category| %><p>Event type: <%= category.name %> <% end %></p>
+<% if @going == true %>
+  <h4>You Are Going</h4>
+<% else %>
 <form action="/join" method="post">
   <input type="hidden" value="<%= @event.id %>" name="event_id">
   <button class="btn btn-primary" type="submit"><p>Join</p></button>
 </form>
+<% end %>
 </div>
 
 <div class="container">

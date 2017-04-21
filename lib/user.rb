@@ -1,7 +1,7 @@
 DB = PG.connect({:dbname => "projectx_development"})
 
 class User < ActiveRecord::Base
-  validates :name, :username, :gender, :image_url, :dob, :password, :presence => true
+  # validates :name, :username, :gender, :image_url, :dob, :password, :presence => true
   validates :username, :uniqueness => true
 
   has_many(:user1, :class_name => 'Friend', :foreign_key => 'user1_id')
