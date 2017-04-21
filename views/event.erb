@@ -1,4 +1,4 @@
-<h1><%= @event.name%><small> Hosted by <%=@event.user.name%> </small> | Catgegories <small> <% @event.categories.each do |category| %>  <%= category.name %> <% end %></small></h1>
+<h1><%= @event.name%><small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a>  </small> | Catgegories <small> <% @event.categories.each do |category| %>  <%= category.name %> <% end %></small></h1>
 
 <form action="/join" method="post">
   <input type="hidden" value="<%= @event.id %>" name="event_id">
@@ -26,19 +26,25 @@
   <div class="col-md-4">
     <h2>Friends going:</h2>
     <% @accepted.each() do |event_user| %>
-    <li><%= event_user.attendee.name%></li>
+    <a href="/user/<%= event_user.attendee.id%>">
+      <li><%= event_user.attendee.name%></li>
+    </a>
     <%end%>
   </div>
   <div class="col-md-4">
     <h2>Pending Acceptance:</h2>
     <% @pending.each() do |event_user| %>
-    <li><%= event_user.attendee.name%></li>
+    <a href="/user/<%= event_user.attendee.id%>">
+      <li><%= event_user.attendee.name%></li>
+    </a>
     <%end%>
   </div>
   <div class="col-md-4">
     <h2>Declined:</h2>
     <% @declined.each() do |event_user| %>
-    <li><%= event_user.attendee.name%></li>
+    <a href="/user/<%= event_user.attendee.id%>">
+      <li><%= event_user.attendee.name%></li>
+    </a>
     <%end%>
   </div>
 </div>
