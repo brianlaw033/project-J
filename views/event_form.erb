@@ -6,31 +6,31 @@
   <input type="hidden" name="user_id" value="<%= @user.id%>">
   <div class="form-group">
     <label class="col-sm-2" for="name"><p>Name:</p></label>
-    <input class="col-sm-6" type="text" name="name" id="name" value="">
+    <input class="col-sm-6" type="text" name="name" id="name" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="date"><p>Date:</p></label>
-    <input class="col-sm-6" type="datetime-local" name="date" id="date" value="">
+    <input class="col-sm-6" type="datetime-local" name="date" id="date" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="location"><p>Location:</p></label>
-    <input class="col-sm-6" type="text" name="location" id="location" value="">
+    <input class="col-sm-6" type="text" name="location" id="location" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="capacity"><p>Capacity:</p></label>
-    <input class="col-sm-6" type="number" name="capacity" min="1" value="">
+    <input class="col-sm-6" type="number" name="capacity" min="1" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="description"><p>Description:</p></label>
-    <input class="col-sm-6" type="text" name="description" value="">
+    <input class="col-sm-6" type="text" name="description" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="image_url"><p>Image URL:</p></label>
-    <input class="col-sm-6" type="text" name="image_url" value="">
+    <input class="col-sm-6" type="text" name="image_url" required>
   </div>
   <div class="form-group">
     <label class="col-sm-2" for="video_url"><p>Video URL:</p></label>
-    <input class="col-sm-6" type="text" name="video_url" value="">
+    <input class="col-sm-6" type="text" name="video_url" required>
   </div>
     <a href="/home" class="btn btn-danger"><p>Cancel</p></a>
     <button class="btn btn-primary" type="submit"><p>Submit</p></button>

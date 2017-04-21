@@ -158,7 +158,6 @@ patch("/event/:id") do
   params2 = params.reject{|k,v| v == "" or k == "splat" or k == "captures" or k == "_method"}
   event_id = params.fetch('id').to_i
   @event = Event.find(params.fetch("id").to_i())
-  binding.pry
   @event.update(params2)
   redirect("/event/#{event_id}")
 end
@@ -171,8 +170,10 @@ end
 
 patch ("/add_categories/:id") do
   event = Event.find(params.fetch("id").to_i())
-  category_ids = params.fetch('category_ids')
-  event.add_category(category_ids)
+  category_ids = params.fetch('category_ids', nil)
+  if category_ids != nil
+    event.add_category(category_ids)
+  end
   redirect("/event/#{event.id}")
 end
 
