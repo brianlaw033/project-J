@@ -41,9 +41,8 @@ end
 patch ('/profile') do
   user = User.find(session[:user_id])
   params2 = params.reject{|k,v| v == "" or k == "splat" or k == "captures" or k == "_method"}
-binding.pry
+  binding.pry
   user.update(params2)
-  user.reload()
   session.clear
   session[:user_id] = user.id
   session[:username] = user.username
@@ -159,6 +158,7 @@ patch("/event/:id") do
   params2 = params.reject{|k,v| v == "" or k == "splat" or k == "captures" or k == "_method"}
   event_id = params.fetch('id').to_i
   @event = Event.find(params.fetch("id").to_i())
+  binding.pry
   @event.update(params2)
   redirect("/event/#{event_id}")
 end

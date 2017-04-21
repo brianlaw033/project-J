@@ -21,20 +21,20 @@
   <div class="event-box">
       <form class="form-horizontal" action="/signup" method="post">
         <label for="username"><p>Username:</p></label>
-        <input class="form-control" id="username" name="username" type="text" placeholder="Username"><br />
+        <input class="form-control" id="username" name="username" type="text" placeholder="Username" required><br />
         <label for="name"><p>Name:</p></label>
-        <input class="form-control" id="name" name="name" type="text" placeholder="Name"><br />
+        <input class="form-control" id="name" name="name" type="text" placeholder="Name" required><br />
         <label for="gender"><p>Gender:</p></label>
-        <select class="form-control" id='gender' name='gender' type='text'>
+        <select class="form-control" id='gender' name='gender' type='text' required>
             <option value="Male"><p>Male</p></option>
             <option value="Female"><p>Female</p></option>
         </select><br />
         <label for="proPic"><p>Profile Photo:</p></label>
-        <input class="form-control" id="profile_pic_url" name="image_url" type="text" placeholder="Profile Photo URL"><br />
+        <input class="form-control" id="profile_pic_url" name="image_url" type="text" placeholder="Profile Photo URL" required><br />
         <label for="dob"><p>Date of Birth:</p></label>
-        <input class="form-control" id="dob" name="dob" type="date"><br />
+        <input class="form-control" id="dob" name="dob" type="date" required><br />
         <label for="password"><p>Password:</p></label>
-        <input class="form-control" id="passowrd" name="password" type="password" />
+        <input class="form-control" id="passowrd" name="password" type="password"  required/>
         <br>
         <button class="btn btn-primary" type="submit"><p>Sign Up</p></button>
       </form>
