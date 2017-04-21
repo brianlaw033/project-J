@@ -55,6 +55,18 @@
     </div>
     <%end%>
     <div class="event-box">
+
+    <div class="event-box">
+      <h1>Events You Are Hosting</h1>
+      <ul>
+        <% @events.each do |event| %>
+          <% if event.user_id == @user.id %>
+            <a href="/event/<%=event.id%>"><li><p><%= event.name%></p></li></a>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
     <h1>Create Event:</h1>
 
     <form class="form-horizontal" action="/event" method="post">

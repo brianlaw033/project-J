@@ -131,18 +131,23 @@ get("/event/:id") do
   @declined = EventUser.where(:event => @event, :accepted => false)
   @accepted = EventUser.where(:event => @event, :accepted => true)
   t = @event.date
-  @date = t.strftime("%d-%b-%Y")
+  if @event.date != nil
+    @date = t.strftime("%d-%b-%Y")
+  else
+    @date = @event.date
+  end
   @user = User.find(session[:user_id])
+  @going = EventUser.where(:attendee => @user, :event => @event,:accepted => true)
   @friends = @user.find_friends()
   erb(:event)
 end
 
-  post('/join') do
-    me = User.find(session[:user_id])
-    event = Event.find(Integer(params.fetch('event_id')))
-    EventUser.where(:attendee_id => session[:user_id], :event_id => event.id).first_or_create(:event => event, :attendee => me, :accepted => true)
-    redirect("/event/#{event.id}")
-  end
+post('/join') do
+  me = User.find(session[:user_id])
+  event = Event.find(Integer(params.fetch('event_id')))
+  EventUser.where(:attendee_id => session[:user_id], :event_id => event.id).first_or_create(:event => event, :attendee => me, :accepted => true)
+  redirect("/event/#{event.id}")
+end
 
 post("/event_user/:id") do
   me = User.find(session[:user_id])
@@ -153,16 +158,10 @@ post("/event_user/:id") do
 end
 
 patch("/event/:id") do
+  params2 = params.reject{|k,v| v == "" or k == "splat" or k == "captures" or k == "_method"}
   event_id = params.fetch('id').to_i
-  name = params.fetch("name")
-  date = params.fetch("date")
-  location = params.fetch("location")
-  capacity = params.fetch("capacity")
-  description = params.fetch("description")
-  image_url = params.fetch("image_url")
-  video_url = params.fetch("video_url")
   @event = Event.find(params.fetch("id").to_i())
-  @event.update({:name => name, :date => date, :location => location, :capacity => capacity, :description => description, :image_url => image_url, :video_url => video_url})
+  @event.update(params2)
   redirect("/event/#{event_id}")
 end
 
