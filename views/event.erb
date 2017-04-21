@@ -1,4 +1,4 @@
-<h1><%= @event.name%><small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a>  </small> | Catgegories <small> <% @event.categories.each do |category| %>  <%= category.name %> <% end %></small></h1>
+<h1><%= @event.name%><small> Hosted by <a href="/user/<%=@event.user_id%>"><%=@event.user.name%></a>  </small> | Categories <small> <% @event.categories.each do |category| %>  <%= category.name %> <% end %></small></h1>
 
 <% if @going == true %>
   <h4>You Are Going</h4>
