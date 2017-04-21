@@ -1,0 +1,16 @@
+<h1><%= @category.name %></h1>
+
+<% @category.events.each do |event| %>
+<div class="event-box">
+  <h1><a href="/event/<%=event.id%>"><%=event.name %></a></h1>
+  <img class="css-eventimg" src="<%= event.image_url%>">
+    <ul><p>Location: <%= event.location %></p></ul>
+    <ul><p>Time: <%= event.date %></p></ul>
+    <ul><p>Description: <%= event.description %></p></ul>
+</div>
+<% end %>
+
+<% if @category.events.length == 0 %>
+  <h3>No Event In This Category At The Moment</h3>
+  <a href="/home" class="btn btn-primary">Back to General</a>
+<% end %>

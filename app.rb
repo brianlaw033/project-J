@@ -18,6 +18,8 @@ before do
   end
 end
 
+@@categories = Category.all
+
 get("/") do
   erb(:index)
 end
@@ -87,6 +89,12 @@ get("/home") do
   @invitations = EventUser.where(:attendee => @user, :accepted => nil)
   erb(:home)
 end
+
+get("/category/:id") do
+  @category = Category.find(Integer(params.fetch('id')))
+  erb :category
+end
+
 
 patch("/accept/:id") do
   event_user_id = params.fetch('id')
