@@ -2,14 +2,12 @@
 
   <h1>All Events</h1>
   <% @events.each do |event| %>
-    <a href="/event/<%= event.id%>">
-      <img class="css-eventimg" src="<%= event.image_url%>">
-      <ul>
-        <li>Name: <%= event.name %></li>
-        <li>Location: <%= event.location %></li>
-        <li>Description: <%= event.description %></li>
-      </ul>
-    </a>
+    <img class="css-eventimg" src="<%= event.image_url%>">
+    <ul>
+      <li>Name: <a href="/event/<%=event.id%>"><%= event.name %></a></li>
+      <li>Location: <%= event.location %></li>
+      <li>Description: <%= event.description %></li>
+    </ul>
   <% end %>
 
 </div>
