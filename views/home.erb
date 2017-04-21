@@ -1,73 +1,93 @@
 <div class="col-md-6">
-
+  <div class="event-box">
   <h1>All Events</h1>
+  </div>
   <% @events.each do |event| %>
+  <div class="event-box">
+    <h1><a href="/event/<%=event.id%>"><%=event.name %></a></h1>
     <img class="css-eventimg" src="<%= event.image_url%>">
     <ul>
-      <li>Name: <a href="/event/<%=event.id%>"><%= event.name %></a></li>
-      <li>Location: <%= event.location %></li>
-      <li>Description: <%= event.description %></li>
+      <li><p>Location: <%= event.location %></p></li>
+      <li><p>Time: <%= event.date %></p></li>
+      <li><p>Description: <%= event.description %></p></li>
     </ul>
+  </div>
   <% end %>
-
 </div>
 
 
 <div class="col-md-6">
+  <div class="event-box">
   <h1> Pending Invitations</h1>
+  </div>
     <% if @invitations.any?() %>
       <%@invitations.each do |invitation|%>
+       <div class="event-box">
         <a href ="/event/<%=invitation.event.id%>"><%=invitation.event.name%></a> - Invited by: <a href ="/user/<%=invitation.sender.id%>"><%=invitation.sender.name%></a>
         <form action='/accept/<%=invitation.id%>' method='post'>
           <input type="hidden" name="_method" value="patch">
-          <button class='btn btn-success'>Accept</button>
+          <button class='btn btn-success'><p>Accept</p></button>
         </form>
         <form action='/reject/<%=invitation.id%>' method='post'>
           <input type="hidden" name="_method" value="patch">
-          <button class='btn btn-danger'>Reject</button>
+          <button class='btn btn-danger'><p>Reject</p></button>
         </form>
+      </div>
       <%end%>
     <%else%>
-      None
+    <div class="event-box">
+    <p>  None </p>
+    </div>
     <%end%>
-
+    <div class="event-box">
     <h1> Events You Are Attending:</h1>
-    <% @user.attendee.each() do |attendee|%>
+    </div>
+    <% if @user.attendee.any?() %>
+      <% @user.attendee.each() do |attendee|%>
+    <div class="event-box">
     <a href="/event/<%=attendee.event_id%>"><li><%=attendee.event.name%></li></a>
-    <%end%>
+    </div>
+      <%end%>
 
+    <%else%>
+    <div class="event-box">
+    <p> None </p>
+    </div>
+    <%end%>
+    <div class="event-box">
     <h1>Create Event:</h1>
 
     <form class="form-horizontal" action="/event" method="post">
       <input type="hidden" name="user_id" value="<%= @user.id%>">
       <div class="form-group">
-        <label class="col-sm-2" for="name">Name:</label>
-        <input class="col-sm-4" type="text" name="name" id="name" value="">
+        <label class="col-sm-3" for="name"><p>Name:</p></label>
+        <input class="col-sm-6" type="text" name="name" id="name" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="date">Date:</label>
-        <input class="col-sm-4" type="datetime-local" name="date" id="date" value="">
+        <label class="col-sm-3" for="date"><p>Date:</p></label>
+        <input class="col-sm-6" type="datetime-local" name="date" id="date" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="location">Location:</label>
-        <input class="col-sm-4" type="text" name="location" id="location" value="">
+        <label class="col-sm-3" for="location"><p>Location:</p></label>
+        <input class="col-sm-6" type="text" name="location" id="location" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="capacity">Capacity:</label>
-        <input class="col-sm-4" type="number" name="capacity" min="1" value="">
+        <label class="col-sm-3" for="capacity"><p>Capacity:</p></label>
+        <input class="col-sm-6" type="number" name="capacity" min="1" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="description">Description:</label>
-        <input class="col-sm-4" type="text" name="description" value="">
+        <label class="col-sm-3" for="description"><p>Description:</p></label>
+        <input class="col-sm-6" type="text" name="description" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="image_url">Image URL:</label>
-        <input class="col-sm-4" type="text" name="image_url" value="">
+        <label class="col-sm-3" for="image_url"><p>Image URL:</p></label>
+        <input class="col-sm-6" type="text" name="image_url" value="">
       </div>
       <div class="form-group">
-        <label class="col-sm-2" for="video_url">Video URL:</label>
-        <input class="col-sm-4" type="text" name="video_url" value="">
+        <label class="col-sm-3" for="video_url"><p>Video URL:</p></label>
+        <input class="col-sm-6" type="text" name="video_url" value="">
       </div>
-        <button class="btn btn-default" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
     </form>
+  </div>
 </div>

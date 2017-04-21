@@ -1,31 +1,44 @@
-<h1>Sign In</h1>
-
-    <form action="/user" method='post'>
-      <label for="username">Username:</label>
-      <input id="username" name="username" type="text">
-      <br/>
-      <label for="password">Password:</label>
-      <input id="passowrd" name="password" type="password" />
-      <button type="submit">Log In</button>
-    </form>
-
-<h1>Sign Up</h1>
-
-    <form action="/signup" method="post">
-      <label for="username">Username:</label>
-      <input id="username" name="username" type="text" placeholder="Username"><br />
-      <label for="name">Name:</label>
-      <input id="name" name="name" type="text" placeholder="Name"><br />
-      <label for="gender">Gender:</label>
-      <select id='gender' name='gender' type='text'>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-      </select><br />
-      <label for="proPic">Profile Photo:</label>
-      <input id="profile_pic_url" name="image_url" type="text" placeholder="Profile Photo URL"><br />
-      <label for="dob">Date of Birth:</label>
-      <input id="dob" name="dob" type="date"><br />
-      <label for="password">Password:</label>
-      <input id="passowrd" name="password" type="password" />
-      <button type="submit">Sign Up</button>
-    </form>
+<div class="col-sm-2">
+</div>
+<div class="col-sm-8">
+  <div class="event-box">
+    <h1>Sign In</h1>
+  </div>
+  <div class="event-box">
+      <form class="form-horizontal" action="/user" method='post'>
+        <label for="username"><p>Username:</p></label>
+        <input class="form-control" id="username" name="username" type="text">
+        <br/>
+        <label for="password"><p>Password:</p></label>
+        <input class="form-control" id="password" name="password" type="password" />
+        <br>
+        <button class="btn btn-primary" type="submit"><p>Log In</p></button>
+      </form>
+  </div>
+  <div class="event-box">
+    <h1>Sign Up</h1>
+  </div>
+  <div class="event-box">
+      <form class="form-horizontal" action="/signup" method="post">
+        <label for="username"><p>Username:</p></label>
+        <input class="form-control" id="username" name="username" type="text" placeholder="Username"><br />
+        <label for="name"><p>Name:</p></label>
+        <input class="form-control" id="name" name="name" type="text" placeholder="Name"><br />
+        <label for="gender"><p>Gender:</p></label>
+        <select class="form-control" id='gender' name='gender' type='text'>
+            <option value="Male"><p>Male</p></option>
+            <option value="Female"><p>Female</p></option>
+        </select><br />
+        <label for="proPic"><p>Profile Photo:</p></label>
+        <input class="form-control" id="profile_pic_url" name="image_url" type="text" placeholder="Profile Photo URL"><br />
+        <label for="dob"><p>Date of Birth:</p></label>
+        <input class="form-control" id="dob" name="dob" type="date"><br />
+        <label for="password"><p>Password:</p></label>
+        <input class="form-control" id="passowrd" name="password" type="password" />
+        <br>
+        <button class="btn btn-primary" type="submit"><p>Sign Up</p></button>
+      </form>
+  </div>
+</div>
+<div class="col-sm-2">
+</div>

@@ -1,44 +1,50 @@
 <% if !@profile_edit %>
-  <div class="container">
+  <div class="col-sm-2">
+  </div>
+  <div class="event-box col-sm-8">
     <h1><%= @user.name %> <a href="/profile/edit"><span class="glyphicon glyphicon-pencil"></span></a>  </h1>
     <img class="css-profile" src="<%= @user.image_url %>">
-    <h3>username: <%= @user.username %></h3>
+    <h3>Username: <%= @user.username %></h3>
     <h3>Gender: <%= @user.gender %></h3>
     <h3>DOB: <%= @user.dob %></h3>
     <h3>Member Since: <%= @user.created_at %></h3>
     <h3>Last Update of Profile: <%= @user.updated_at %></h3>
   </div>
+  <div class="col-sm-2">
+  </div>
 <% end %>
 
 
 <% if @profile_edit %>
+  <div class="event-box">
   <div class="container">
     <form action="/profile" method="post">
       <input type="hidden" name="_method" value="patch" class="form-control">
       <div class="form-group">
-        <label for="">Name</label>
+        <label for=""><p>Name</p></label>
         <input type="text" name="name" value="<%= @user.name %>" class="form-control">
       </div>
       <div class="form-group">
-        <label for="">Image URL</label>
+        <label for=""><p>Image URL</p></label>
         <input type="text" name="image_url" value="<%= @user.image_url %>" class="form-control">
       </div>
       <div class="form-group">
-        <label for="">Username <span class="glyphicon glyphicon-warning-sign"></span> change this field with care, you'll need to use this new username to log in in future</label>
+        <label for=""><p>Username <span class="glyphicon glyphicon-warning-sign"></span> change this field with care, you'll need to use this new username to log in in future</p></label>
         <input type="<%= @user.username %>" name="username" value="<%= @user.username %>" class="form-control">
       </div>
       <div class="form-group">
-        <label for="">Gender</label>
+        <label for=""><p>Gender</p></label>
         <select id='gender' name='gender' type='text' class="form-control">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          <option value="Male"><p>Male</p></option>
+          <option value="Female"><p>Female</p></option>
         </select>
       </div>
       <div class="form-group">
-        <label for="">DOB</label>
+        <label for=""><p>Date of Birth</p></label>
         <input type="date" name="dob" value="<%= @user.dob %>" class="form-control">
       </div>
-      <button type="submit" class="btn btn-warning">Save Changes</button>
+      <button type="submit" class="btn btn-primary"><p>Save Changes</p></button>
     </form>
+  </div>
   </div>
 <% end %>
