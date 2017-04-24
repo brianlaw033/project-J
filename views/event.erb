@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class="event-box">
-    <div class="row" style="height:400px ;">
+    <div class="row">
       <div class="col-md-6">
         <img class="css-eventimg" src="<%= @event.image_url%>">
         <br>
@@ -24,7 +24,7 @@
         <p>Capacity: <%=@event.capacity%></p>
       <%if @event.video_url == "" %>
       <%else%>
-      <iframe style="margin-top: 30px; margin-bottom: 30px; width: 300px; border: 1px solid grey" src="<%= @event.video_url%>" frameborder="0" allowfullscreen aria="blank"></iframe>
+      <iframe style="margin: 20px; width: 300px; border: 1px solid grey" src="<%= @event.video_url%>" frameborder="0" allowfullscreen aria="blank"></iframe>
       <%end%>
     </div>
   </div>
